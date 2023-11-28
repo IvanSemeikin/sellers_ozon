@@ -20,23 +20,26 @@ def show_data(button_name, metric_type):
     st.subheader(f"Доля лидера от всей категории")
     st.dataframe(sales_data)
 
-    # Преобразование данных для графика
+    # ************* График начало *******************
+    # Преобразование данных для линейного графика
     melted_sales_data = pd.melt(sales_data, id_vars=['Category'], var_name='Month', value_name='Percentage')
     
-    # График по продажам
-    fig_sales = px.bar(melted_sales_data, x='Month', y='Percentage', color='Category',
-                       title=f'{metric_type.capitalize()} Sales Distribution')
+    # Список доступных категорий
+    available_categories = melted_sales_data['Category'].unique()
+    
+    # Выбор пользователем категорий
+    selected_categories = st.multiselect('Выберите категории для отображения', available_categories, default=available_categories)
+    
+    # Фильтрация данных по выбранным категориям
+    filtered_sales_data = melted_sales_data[melted_sales_data['Category'].isin(selected_categories)]
+    
+    # Линейный график по продажам
+    fig_sales = px.line(filtered_sales_data, x='Month', y='Percentage', color='Category',
+                        title=f'{metric_type.capitalize()} Sales Distribution')
     st.plotly_chart(fig_sales)
 
+    # ************* График конец *******************
     
-    # # Преобразование данных для графика
-    # melted_sales_data = pd.melt(sales_data, id_vars=['Category'], var_name='Month', value_name='Percentage')
-
-    # # График по продажам
-    # fig_sales = px.bar(melted_sales_data, x='Seller', y='Percentage', color='Month',
-    #                    title=f'{metric_type.capitalize()} Sales Distribution')
-    # st.plotly_chart(fig_sales)
-
     # Таблица продавцов-лидеров по продажам
     sellers_data_sales = load_data(f"Общая_таблица_продавцы_{button_name.lower()}_sales")
     st.subheader(f"Топ продавцов по {metric_type.capitalize()}")
