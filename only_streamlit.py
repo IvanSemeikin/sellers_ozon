@@ -21,8 +21,13 @@ def show_data(button_name, metric_type):
     st.dataframe(sales_data)
 
     # ************* График начало *******************
-    # Преобразование данных для линейного графика
-    melted_sales_data = pd.melt(sales_data, id_vars=['Category'], var_name='Month', value_name='Percentage')
+    # Добавление столбца 'Category', если его нет
+    if 'Category' not in sellers_data_sales.columns:
+        sellers_data_sales['Category'] = sellers_data_sales.index
+    
+    # Преобразование данных для линейного графика по продавцам
+    melted_sellers_data_sales = pd.melt(sellers_data_sales, id_vars=['Category'], var_name='Month', value_name='Sales')
+
     
     # Список доступных категорий
     available_categories = melted_sales_data['Category'].unique()
