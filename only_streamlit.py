@@ -27,10 +27,55 @@ def show_data(button_name, metric_type):
     st.subheader(f"Доля лидера от всей категории")
     st.dataframe(sales_data)
 
-    # ************* График начало *******************
-    # Добавление столбца 'Category', если его нет
-    if 'Category' not in sellers_data_sales.columns:
-        sellers_data_sales['Category'] = sellers_data_sales.index
+    # *************************************************** График начало *********************************************************
+    # *************************************************** полурабочий код начало *********************************************************
+    # Преобразование данных для линейного графика
+    # melted_sales_data = pd.melt(sales_data, id_vars=['Category'], var_name='Month', value_name='Percentage')
+    
+    # # Список доступных категорий
+    # available_categories = melted_sales_data['Category'].unique()
+    
+    # # Выбор пользователем категорий
+    # selected_categories = st.multiselect('Выберите категории для отображения', available_categories, default=None)
+    
+    # # Если пользователь не выбрал категории, используем все доступные
+    # if not selected_categories:
+    #     selected_categories = available_categories
+    
+    # # Фильтрация данных по выбранным категориям
+    # filtered_sales_data = melted_sales_data[melted_sales_data['Category'].isin(selected_categories)]
+    
+    # # Линейный график по продажам
+    # fig_sales = px.line(filtered_sales_data, x='Month', y='Percentage', color='Category',
+    #                     title=f'Sales Distribution', height=600)
+    
+    # # Отображение графика без названий категорий под ним
+    # st.plotly_chart(fig_sales, use_container_width=True, sharing='streamlit', config={'displayModeBar': False})
+    
+    # # Преобразование данных для линейного графика по продавцам
+    # melted_sellers_data_sales = pd.melt(sellers_data_sales, id_vars=['Category'], var_name='Month', value_name='Sales')
+    
+    # # Список доступных категорий для продавцов
+    # available_seller_categories = melted_sellers_data_sales['Category'].unique()
+    
+    # # Выбор пользователем категорий для продавцов
+    # selected_seller_categories = st.multiselect('Выберите категории для отображения', available_seller_categories, default=None)
+    
+    # # Если пользователь не выбрал категории для продавцов, используем все доступные
+    # if not selected_seller_categories:
+    #     selected_seller_categories = available_seller_categories
+    
+    # # Фильтрация данных по выбранным категориям для продавцов
+    # filtered_sellers_data_sales = melted_sellers_data_sales[melted_sellers_data_sales['Category'].isin(selected_seller_categories)]
+    
+    # # Линейный график по продавцам-лидерам
+    # fig_sellers = px.line(filtered_sellers_data_sales, x='Month', y='Sales', color='Category',
+    #                       title=f'Top Sellers by Sales', height=600)
+    
+    # # Отображение графика без названий категорий под ним
+    # st.plotly_chart(fig_sellers, use_container_width=True, sharing='streamlit', config={'displayModeBar': False})
+
+    # *************************************************** полурабочий код конец *********************************************************
     
     # Преобразование данных для линейного графика по продавцам
     melted_sellers_data_sales = pd.melt(sellers_data_sales, id_vars=['Category'], var_name='Month', value_name='Sales')
