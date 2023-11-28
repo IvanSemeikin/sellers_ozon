@@ -21,7 +21,7 @@ def show_data(button_name, metric_type):
     st.dataframe(sales_data)
 
     # Преобразование данных для графика
-    melted_sales_data = pd.melt(sales_data, id_vars=['Seller'], var_name='Month', value_name='Percentage')
+    melted_sales_data = pd.melt(sales_data, id_vars=['Category'], var_name='Month', value_name='Percentage')
 
     # График по продажам
     fig_sales = px.bar(melted_sales_data, x='Seller', y='Percentage', color='Month',
