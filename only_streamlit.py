@@ -28,6 +28,24 @@ def show_data(button_name, metric_type):
     st.dataframe(sales_data)
 
     # *************************************************** График начало *********************************************************
+    # Преобразование данных для линейного графика по продавцам
+    melted_sellers_data_sales = pd.melt(sellers_data_sales, id_vars=['Category'], var_name='Month', value_name='Sales')
+    
+    # Список доступных категорий для продавцов
+    available_seller_categories = melted_sellers_data_sales['Category'].unique()
+    
+    # Выбор пользователем категорий для продавцов
+    selected_seller_categories = st.multiselect('Выберите категории для отображения', available_seller_categories, default=available_seller_categories)
+    
+    # Фильтрация данных по выбранным категориям для продавцов
+    filtered_sellers_data_sales = melted_sellers_data_sales[melted_sellers_data_sales['Category'].isin(selected_seller_categories)]
+    
+    # Линейный график по продавцам-лидерам
+    fig_sellers = px.line(filtered_sellers_data_sales, x='Month', y='Sales', color='Category',
+                          title=f'Top Sellers by {metric_type.capitalize()}')
+    st.plotly_chart(fig_sellers)
+
+
     # *************************************************** полурабочий код начало *********************************************************
     # Преобразование данных для линейного графика
     # melted_sales_data = pd.melt(sales_data, id_vars=['Category'], var_name='Month', value_name='Percentage')
