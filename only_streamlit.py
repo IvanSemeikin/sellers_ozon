@@ -7,7 +7,7 @@ import pandas as pd
 
 # Функция для загрузки данных из файла на GitHub
 def load_data(file_path):
-    full_path = f'common_tables/{file_path}.xlsx'
+    full_path = f'/{file_path}.xlsx'
     return pd.read_excel(full_path)
 
 # Функция для отображения таблицы и графика
