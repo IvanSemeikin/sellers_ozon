@@ -1,6 +1,5 @@
-pip install openpyxl
-import subprocess
-subprocess.call(['pip', 'install', '-r', 'requirements.txt'])
+# import subprocess
+# subprocess.call(['pip', 'install', '-r', 'requirements.txt'])
 
 import streamlit as st
 import pandas as pd
