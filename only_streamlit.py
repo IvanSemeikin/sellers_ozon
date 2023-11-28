@@ -10,10 +10,10 @@ import plotly.express as px
 def load_data(file_path):
     full_path = f'{file_path}.xlsx'
     data = pd.read_excel(full_path)
-    
-    # Добавление столбца 'Category', если его нет
+
+    # Если столбец 'Category' отсутствует, добавим его, используя индексы
     if 'Category' not in data.columns:
-        data['Category'] = data.index
+        data.insert(0, 'Category', data.index)
     
     return data
 
