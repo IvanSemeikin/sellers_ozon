@@ -17,7 +17,7 @@ def show_data(button_name, metric_type):
 
     # Загрузка данных по продажам
     sales_data = load_data(f"Общая_таблица_проценты_{button_name.lower()}_sales")
-    st.subheader(f"Процент лидера от всей категории")
+    st.subheader(f"Доля лидера от всей категории")
     st.dataframe(sales_data)
 
     # # Преобразование данных для графика
