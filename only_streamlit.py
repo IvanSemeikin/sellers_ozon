@@ -4,6 +4,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import plotly.express as px
 
 # Функция для загрузки данных из файла на GitHub
 def load_data(file_path):
@@ -19,11 +20,13 @@ def show_data(button_name, metric_type):
     st.subheader(f"Percentage Leader vs. Category Sales")
     st.dataframe(sales_data)
 
-        # График по продажам
-    fig_sales, ax_sales = plt.subplots()
-    ax_sales.bar(sales_data['Seller'], sales_data['Percentage'])
-    ax_sales.set_title(f'{metric_type.capitalize()} Sales Distribution')
-    st.pyplot(fig_sales)
+    # Преобразование данных для графика
+    melted_sales_data = pd.melt(sales_data, id_vars=['Seller'], var_name='Month', value_name='Percentage')
+
+    # График по продажам
+    fig_sales = px.bar(melted_sales_data, x='Seller', y='Percentage', color='Month',
+                       title=f'{metric_type.capitalize()} Sales Distribution')
+    st.plotly_chart(fig_sales)
 
     # Таблица продавцов-лидеров по продажам
     sellers_data_sales = load_data(f"Общая_таблица_продавцы_{button_name.lower()}_sales")
