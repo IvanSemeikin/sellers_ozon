@@ -1,5 +1,5 @@
 import subprocess
-subprocess.call(['pip', 'install', '-r', 'path/to/requirements.txt'])
+subprocess.call(['pip', 'install', '-r', 'requirements.txt'])
 
 import streamlit as st
 import pandas as pd
