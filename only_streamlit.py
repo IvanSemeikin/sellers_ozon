@@ -4,8 +4,8 @@ import plotly.express as px
 
 # Функция для загрузки данных из файла на GitHub
 def load_data(file_path):
-    url = f'https://raw.githubusercontent.com/your_username/your_repository/main/{file_path}.csv'
-    return pd.read_csv(url)
+    url = 'common_tables/'
+    return pd.read_excel(url)
 
 # Функция для отображения таблицы и графика
 def show_data(button_name, metric_type):
