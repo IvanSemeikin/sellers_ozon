@@ -37,7 +37,7 @@ def show_data(button_name, metric_type):
 st.title("Привет! Здесь информация по продавцам OZON")
 
 # Выбор кнопки
-selected_button = st.radio("Выберите категорию:", ["fbo", "fbs", "retail", "crossboarder", "total"])
+selected_button = st.radio("Выберите категорию:", ["fbo", "fbs", "retail", "crossborder", "total"])
 
 # Вывод данных для продаж
 show_data(selected_button, "sales")
