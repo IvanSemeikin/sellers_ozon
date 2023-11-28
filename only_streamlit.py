@@ -1,6 +1,6 @@
-# import subprocess
-# subprocess.call(['pip', 'install', '-r', 'requirements.txt'])
-import openpyxl
+import subprocess
+subprocess.call(['pip', 'install', '-r', 'requirements.txt'])
+
 import streamlit as st
 import pandas as pd
 # import plotly.express as px
