@@ -17,7 +17,7 @@ def show_data(button_name, metric_type):
 
     # Загрузка данных по продажам
     sales_data = load_data(f"Общая_таблица_проценты_{button_name.lower()}_sales")
-    st.subheader(f"Percentage Leader vs. Category Sales")
+    st.subheader(f"Процент лидера от всей категории")
     st.dataframe(sales_data)
 
     # # Преобразование данных для графика
@@ -30,7 +30,7 @@ def show_data(button_name, metric_type):
 
     # Таблица продавцов-лидеров по продажам
     sellers_data_sales = load_data(f"Общая_таблица_продавцы_{button_name.lower()}_sales")
-    st.subheader(f"Top Sellers by {metric_type.capitalize()} Sales")
+    st.subheader(f"Топ продавцов по {metric_type.capitalize()}")
     st.dataframe(sellers_data_sales)
 
 # Основной код Streamlit
