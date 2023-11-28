@@ -1,9 +1,9 @@
-import subprocess
-subprocess.call(['pip', 'install', '-r', 'requirements.txt'])
+# import subprocess
+# subprocess.call(['pip', 'install', '-r', 'requirements.txt'])
 
 import streamlit as st
 import pandas as pd
-# import plotly.express as px
+import matplotlib.pyplot as plt
 
 # Функция для загрузки данных из файла на GitHub
 def load_data(file_path):
