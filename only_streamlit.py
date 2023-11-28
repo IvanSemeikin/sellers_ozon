@@ -10,10 +10,13 @@ import plotly.express as px
 def load_data(file_path):
     full_path = f'{file_path}.xlsx'
     data = pd.read_excel(full_path)
+    
     # Добавление столбца 'Category', если его нет
     if 'Category' not in data.columns:
         data['Category'] = data.index
+    
     return data
+
 
 # Функция для отображения таблицы и графика
 def show_data(button_name, metric_type):
