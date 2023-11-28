@@ -11,9 +11,9 @@ def load_data(file_path):
     full_path = f'{file_path}.xlsx'
     data = pd.read_excel(full_path)
 
-    # Если столбец 'Category' отсутствует, добавим его, используя индексы
-    if 'Category' not in data.columns:
-        data.insert(0, 'Category', data.index)
+    # # Если столбец 'Category' отсутствует, добавим его, используя индексы
+    # if 'Category' not in data.columns:
+    #     data.insert(0, 'Category', data.index)
     
     return data
 
