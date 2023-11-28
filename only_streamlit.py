@@ -13,7 +13,7 @@ def load_data(file_path):
 
 # Функция для отображения таблицы и графика
 def show_data(button_name, metric_type):
-    st.header(f"{metric_type.capitalize()} Data for {button_name}")
+    st.header(f"Данные по {metric_type.capitalize()} || {button_name}")
 
     # Загрузка данных по продажам
     sales_data = load_data(f"Общая_таблица_проценты_{button_name.lower()}_sales")
