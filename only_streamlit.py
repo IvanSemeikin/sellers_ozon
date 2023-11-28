@@ -20,6 +20,15 @@ def show_data(button_name, metric_type):
     st.subheader(f"Доля лидера от всей категории")
     st.dataframe(sales_data)
 
+    # Преобразование данных для графика
+    melted_sales_data = pd.melt(sales_data, id_vars=['Category'], var_name='Month', value_name='Percentage')
+    
+    # График по продажам
+    fig_sales = px.bar(melted_sales_data, x='Month', y='Percentage', color='Category',
+                       title=f'{metric_type.capitalize()} Sales Distribution')
+    st.plotly_chart(fig_sales)
+
+    
     # # Преобразование данных для графика
     # melted_sales_data = pd.melt(sales_data, id_vars=['Category'], var_name='Month', value_name='Percentage')
 
