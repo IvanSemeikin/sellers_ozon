@@ -1,3 +1,4 @@
+pip install openpyxl
 import subprocess
 subprocess.call(['pip', 'install', '-r', 'requirements.txt'])
 
