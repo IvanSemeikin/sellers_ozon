@@ -147,7 +147,8 @@ def show_data(button_name, metric_type):
     st.plotly_chart(fig_sellers)
 
 # Основной код Streamlit
-st.title("Привет! Здесь информация по продавцам OZON (по WB скоро появится")
+st.markdown("Привет! Здесь информация по продавцам OZON (по WB скоро появится", unsafe_allow_html=True)
+# st.title("Привет! Здесь информация по продавцам OZON (по WB скоро появится")
 
 # Выбор кнопки
 selected_button = st.radio("Выберите категорию:", ["fbo", "fbs", "retail", "crossborder", "total"])
