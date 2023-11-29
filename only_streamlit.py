@@ -148,10 +148,11 @@ def line_chart_from_dataframe(df):
     st.header("Линейный график")
 
     # Строим линейный график
-    fig = px.line(df, x=df.columns, y=df.iloc[:, 1:], color='Category', title="Линейный график")
+    fig = px.line(df, x=df.columns[1:], y=df.iloc[:, 1:], color='Category', title="Линейный график")
 
     # Отображаем график
     st.plotly_chart(fig)
+    
 line_chart_from_dataframe(df_graphic)
 
 # *************************************************************************************************************
