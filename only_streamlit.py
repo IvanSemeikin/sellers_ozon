@@ -17,6 +17,11 @@ def show_data(button_name):
     # Таблица продавцов-лидеров по продажам
     sellers_data_sales = load_data(f"Общая_таблица_проценты_{button_name.lower()}_sales")
     sellers_data_revenue = load_data(f"Общая_таблица_проценты_{button_name.lower()}_revenue")
+    # Проверка и приведение данных к DataFrame
+    if not isinstance(sellers_data_sales, pd.DataFrame):
+        sellers_data_sales = pd.DataFrame(sellers_data_sales)
+    if not isinstance(sellers_data_revenue, pd.DataFrame):
+        sellers_data_revenue = pd.DataFrame(sellers_data_revenue)
     return sellers_data_sales, sellers_data_revenue
 
 
