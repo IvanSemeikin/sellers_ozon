@@ -248,7 +248,10 @@ col2.table(result_revenue)
 
 # ***************************************************************************************************************
 st.header("НОВЫЙ ЭТАП: СРЕДНИЕ ЗНАЧЕНИЯ")
+st.write("Только категории без нулевых значений!")
 st.header("Общие средние")
+# Слайдер для выбора одного числа
+single_value_avg = st.slider("Выберите число показанных категорий", min_value=0, max_value=20, value=5, step=1)
 # Создаем копию датафрейма
 sellers_data_sales_copy_total = sellers_data_sales.copy()
 # Удаляем строки, в которых есть хотя бы одно значение 0
@@ -257,8 +260,21 @@ sellers_data_sales_copy_total = sellers_data_sales_copy_total[(sellers_data_sale
 sellers_data_sales_copy_total['mean_value'] = sellers_data_sales_copy_total.mean(axis=1)
 # Сортируем по убыванию по среднему значению
 sellers_data_sales_copy_total = sellers_data_sales_copy_total.sort_values(by='mean_value', ascending=False)
+
+
+# # Выбор нужного столбца по продажам
+# selected_column = sellers_data_sales[selected_option_month]
+# # Сортировка данных по убыванию
+# sorted_data = selected_column.sort_values(ascending=False)
+# # Отображение указанного количества строк
+# result_sales = sorted_data.head(single_value)
+
+# Выбор нужного столбца со средними значениями
+sel_col_sales_total = sellers_data_sales_copy_total[mean_value]
+# Сортировка данных по убыванию
+sorted_data_sales_total = sel_col_sales_total.sort_values(ascending=False)
 # Выводим результат
-st.write(sellers_data_sales_copy_total)
+st.write(sorted_data_sales_total)
 # ****************************************
 st.header("Средние за 22 год")
 # Создаем копию датафрейма и оставляем только столбцы, где в названии есть '22'
