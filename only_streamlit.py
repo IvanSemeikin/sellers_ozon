@@ -301,7 +301,7 @@ sorted_data_sales_23 = sel_col_sales_22.sort_values(ascending=False)
 # Отображение указанного количества строк
 result_sales_avg_23 = sorted_data_sales_23.head(single_value_avg)
 # Выводим результат
-st.write(sorted_data_sales_23)
+st.write(result_sales_avg_23)
 # ******************************** то, что сверху, но для выручки *************************************************
 st.header("ВЫРУЧКА")
 st.header("Общие средние")
