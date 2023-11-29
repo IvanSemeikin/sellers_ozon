@@ -45,7 +45,7 @@ def show_table_top_sellers(button_name):
     
 # Отображение графика для продаж
 def show_graph_top_sellers_sales(button_name, metric_type):
-    st.header(f"График топ продавцов по {metric_type.capitalize()} || {button_name}")
+    st.header(f"График по категориям Продажи || {button_name}")
 
     # Сброс индекса
     sellers_data_sales_reset = sellers_data_sales.reset_index()
@@ -66,10 +66,13 @@ def show_graph_top_sellers_sales(button_name, metric_type):
 
 # Отображение графика для выручки
 def show_graph_top_sellers_revenue(button_name, metric_type):
-    st.header(f"График топ продавцов по {metric_type.capitalize()} || {button_name}")
+    st.header(f"График по категориям Выручка || {button_name}")
 
+    # Сброс индекса
+    sellers_data_revenue_reset = sellers_data_revenue.reset_index()
+    
     # Линейный график по продавцам-лидерам
-    melted_sellers_data_revenue = pd.melt(sellers_data_revenue, id_vars=['Category'], var_name='Month', value_name='Sales')
+    melted_sellers_data_revenue = pd.melt(sellers_data_revenue_reset, id_vars=['Category'], var_name='Month', value_name='Sales')
     available_seller_categories = melted_sellers_data_revenue['Category'].unique()
 
     # Генерация уникального ключа для виджета st.multiselect
