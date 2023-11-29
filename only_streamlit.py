@@ -148,6 +148,8 @@ def show_data(button_name, metric_type):
 
 # Основной код Streamlit
 st.markdown("<h1 style='text-align: center;'>Привет! Здесь информация по продавцам OZON<br>(по WB появится в следующем релизе)</h1>", unsafe_allow_html=True)
+text = "<h1 style='text-align: center;'>Первая строка<br><span style='color: red;'>Вторая строка</span></h1>"
+st.markdown(text, unsafe_allow_html=True)
 # st.markdown("<h1>Привет! Здесь информация по продавцам OZON<br>(по WB появится в следующем релизе)</h1>", unsafe_allow_html=True)
 # st.title("Привет! Здесь информация по продавцам OZON\n(по WB появится в следующем релизе)")
 
