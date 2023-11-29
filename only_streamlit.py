@@ -49,7 +49,7 @@ def show_graph_top_sellers_sales(button_name, metric_type):
 
 
     # Вывести sellers_data_sales для диагностики
-    st.write(sellers_data_sales)
+    st.write(sellers_data_sales.dtypes)
     
     # Линейный график по продавцам-лидерам
     melted_sellers_data_sales = pd.melt(sellers_data_sales, id_vars=['Category'], var_name='Month', value_name='Sales')
