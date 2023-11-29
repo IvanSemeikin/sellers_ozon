@@ -168,3 +168,6 @@ months_names = sellers_data_sales_new.columns.tolist()
 # Выпадающий список
 selected_option_month = st.selectbox('Выбери месяц', months_names)
 
+# Слайдер для выбора одного числа
+single_value = st.slider("Выберите число", min_value=0, max_value=100, value=50, step=1)
+st.write("Выбрано число:", single_value)
