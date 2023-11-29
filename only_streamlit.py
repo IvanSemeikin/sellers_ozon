@@ -195,12 +195,17 @@ def line_chart_from_dataframe(df):
     # Отображаем график
     st.plotly_chart(fig)
 
-st.header("Данные по продажам")
-df_graphic_sales = filter_dataframe(sellers_data_sales_new)
-line_chart_from_dataframe(df_graphic_sales)
-st.header("Данные по выручке")
-df_graphic_revenue = filter_dataframe(sellers_data_revenue_new)
-line_chart_from_dataframe(df_graphic_revenue)
+st.header("Данные по продажам или выручке")
+# Выбор кнопки
+selected_button_sales_or_revenue = st.radio("Что будем смотреть:", ["продажи", "выручка"])
+if selected_button_sales_or_revenue == "продажи":
+    st.header("Данные по продажам")
+    df_graphic_sales = filter_dataframe(sellers_data_sales_new)
+    line_chart_from_dataframe(df_graphic_sales)
+else:
+    st.header("Данные по выручке")
+    df_graphic_revenue = filter_dataframe(sellers_data_revenue_new)
+    line_chart_from_dataframe(df_graphic_revenue)
 
 # *************************************************************************************************************
 st.header("Топ категорий в выбранный месяц")
