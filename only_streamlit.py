@@ -248,25 +248,39 @@ col2.table(result_revenue)
 
 # ***************************************************************************************************************
 st.header("НОВЫЙ ЭТАП: СРЕДНИЕ ЗНАЧЕНИЯ")
+st.header("Общие средние")
 # Создаем копию датафрейма
-sellers_data_sales_copy = sellers_data_sales.copy()
-
+sellers_data_sales_copy_total = sellers_data_sales.copy()
 # Удаляем строки, в которых есть хотя бы одно значение 0
-sellers_data_sales_copy = sellers_data_sales_copy[(sellers_data_sales_copy != 0).all(axis=1)]
-
+sellers_data_sales_copy_total = sellers_data_sales_copy_total[(sellers_data_sales_copy_total != 0).all(axis=1)]
 # Считаем среднее для каждой строки
-sellers_data_sales_copy['mean_value'] = sellers_data_sales_copy.mean(axis=1)
-
-# Считаем среднее по столбцам, где в названии столбца есть '22'
-sellers_data_sales_copy['mean_22'] = sellers_data_sales_copy.filter(like='22').mean(axis=1)
-
-# Считаем среднее по столбцам, где в названии столбца есть '23'
-sellers_data_sales_copy['mean_23'] = sellers_data_sales_copy.filter(like='23').mean(axis=1)
-
+sellers_data_sales_copy_total['mean_value'] = sellers_data_sales_copy_total.mean(axis=1)
 # Сортируем по убыванию по среднему значению
-sellers_data_sales_copy = sellers_data_sales_copy.sort_values(by='mean_value', ascending=False)
-
+sellers_data_sales_copy_total = sellers_data_sales_copy_total.sort_values(by='mean_value', ascending=False)
 # Выводим результат
-st.write(sellers_data_sales_copy)
-
+st.write(sellers_data_sales_copy_total)
+# ****************************************
+st.header("Средние за 22 год")
+# Создаем копию датафрейма и оставляем только столбцы, где в названии есть '22'
+sellers_data_sales_copy_total_22 = sellers_data_sales.filter(like='22').copy()
+# Удаляем строки, в которых есть хотя бы одно значение 0
+sellers_data_sales_copy_total_22 = sellers_data_sales_copy_total_22[(sellers_data_sales_copy_total_22 != 0).all(axis=1)]
+# Считаем среднее для каждой строки
+sellers_data_sales_copy_total_22['mean_value_22'] = sellers_data_sales_copy_total_22.mean(axis=1)
+# Сортируем убыванию по среднему значению
+sellers_data_sales_copy_total_22 = sellers_data_sales_copy_total_22.sort_values(by='mean_value_22', ascending=False)
+# Выводим результат
+st.write(sellers_data_sales_copy_total_22)
+# ****************************************
+st.header("Средние за 23 год")
+# Создаем копию датафрейма и оставляем только столбцы, где в названии есть '23'
+sellers_data_sales_copy_total_23 = sellers_data_sales.filter(like='23').copy()
+# Удаляем строки, в которых есть хотя бы одно значение 0
+sellers_data_sales_copy_total_23 = sellers_data_sales_copy_total_23[(sellers_data_sales_copy_total_23 != 0).all(axis=1)]
+# Считаем среднее для каждой строки
+sellers_data_sales_copy_total_23['mean_value_23'] = sellers_data_sales_copy_total_23.mean(axis=1)
+# Сортируем убыванию по среднему значению
+sellers_data_sales_copy_total_23 = sellers_data_sales_copy_total_23.sort_values(by='mean_value_23', ascending=False)
+# Выводим результат
+st.write(sellers_data_sales_copy_total_23)
 
