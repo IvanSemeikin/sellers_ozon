@@ -35,7 +35,7 @@ def show_table_percentage(button_name):
     # Загрузка данных по продажам
     sales_data = load_data(f"Общая_таблица_проценты_{button_name.lower()}_sales")
     # Округление всех значений до 1 знака после запятой
-    rounded_sales_data = sales_data.round(0)
+    rounded_sales_data = sales_data.round(1)
     st.subheader(f"Доля лидера от всей категории")
     st.dataframe(rounded_sales_data)
     
