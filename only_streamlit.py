@@ -228,7 +228,7 @@ result_sales = sorted_data.head(single_value)
 st.header("Данные по продажам")
 st.write(result_sales)
 # ***************************************************************************************************************
-st.header("НУЖНО ВЫБРАТЬ КАКОЙ ВИД ОСТАВИТЬ: КАК ВЫШЕ ИЛИ КАК НИЖЕ")
+
 # Выбор нужного столбца по выручке
 selected_column = sellers_data_revenue[selected_option_month]
 # Сортировка данных по убыванию
@@ -238,7 +238,7 @@ result_revenue = sorted_data.head(single_value)
 # Вывод результата
 st.header("Данные по выручке")
 st.write(result_revenue)
-
+st.header("НУЖНО ВЫБРАТЬ КАКОЙ ВИД ОСТАВИТЬ: КАК ВЫШЕ ИЛИ КАК НИЖЕ")
 col1, col2 = st.columns(2)
 col1.subheader("Данные по продажам")
 col1.table(result_sales)
