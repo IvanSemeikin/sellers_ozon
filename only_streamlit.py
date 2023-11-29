@@ -147,8 +147,14 @@ df_graphic = filter_dataframe(sellers_data_sales_new)
 def line_chart_from_dataframe(df):
     st.header("Линейный график")
 
+    # Удалим столбец 'Category' и сделаем его индексом
+    df.set_index('Category', inplace=True)
+
+    # Транспонируем датафрейм
+    df_transposed = df.T
+
     # Строим линейный график
-    fig = px.line(df, x=df.columns[1:], y=df.iloc[:, 1:], color='Category', title="Линейный график")
+    fig = px.line(df_transposed, title="Линейный график")
 
     # Отображаем график
     st.plotly_chart(fig)
