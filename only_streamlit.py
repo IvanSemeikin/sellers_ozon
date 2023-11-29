@@ -37,7 +37,7 @@ def show_table_percentage(button_name):
     # # Округление всех значений до 1 знака после запятой
     # rounded_sales_data = sales_data.round(1)
     st.subheader(f"Доля лидера от всей категории")
-    st.dataframe(sales_data.format("{:.1f}"))
+    st.dataframe(sales_data.style.format("{:.1f}"))
     
 # Отображение таблицы с топ продавцами   
 def show_table_top_sellers(button_name, metric_type):
