@@ -245,17 +245,10 @@ table_revenue = pd.DataFrame(result_revenue)
 # Отображаем таблицы в два столбца
 col1, col2 = st.columns(2)
 
-# Устанавливаем ширину столбцов
-col1.width(600)
-col2.width(600)
+# Устанавливаем ширину столбцов через CSS
+col1.table(table_sales.style.set_table_styles([{'selector': 'table', 'props': [('max-width', '600px')]}]))
+col2.table(table_revenue.style.set_table_styles([{'selector': 'table', 'props': [('max-width', '600px')]}]))
 
-# Помещаем таблицу 1 в первый столбец
-col1.subheader("Данные по продажам")
-col1.write(table_sales)
-
-# Помещаем таблицу 2 во второй столбец
-col2.subheader("Данные по выручке")
-col2.write(table_revenue)
 
 
 
