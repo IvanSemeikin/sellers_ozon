@@ -238,16 +238,14 @@ result_revenue = sorted_data.head(single_value)
 st.header("Данные по выручке")
 st.write(result_revenue)
 
-# Создаем две таблицы
-table_sales = pd.DataFrame(result_sales)
-table_revenue = pd.DataFrame(result_revenue)
-
-# Отображаем таблицы в два столбца
+# Отображаем таблицы в два столбца с шириной 600 пикселей
 col1, col2 = st.columns(2)
+col1.subheader("Данные по продажам")
+col1.table(result_sales, width=800)
 
-# Устанавливаем ширину столбцов через CSS
-col1.table(table_sales.style.set_table_styles([{'selector': 'table', 'props': [('width', '1000px')]}]))
-col2.table(table_revenue.style.set_table_styles([{'selector': 'table', 'props': [('width', '800px')]}]))
+col2.subheader("Данные по выручке")
+col2.table(result_revenue, width=800)
+
 
 
 
