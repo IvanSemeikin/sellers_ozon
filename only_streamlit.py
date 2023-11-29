@@ -243,11 +243,11 @@ col1, col2 = st.columns(2)
 
 # Помещаем таблицу 1 в первый столбец
 col1.subheader("Данные по продажам")
-col1.table(result_sales)
+col1.write(result_sales)
 
 # Помещаем таблицу 2 во второй столбец
 col1.subheader("Данные по выручке")
-col2.table(result_revenue)
+col2.write(result_revenue)
 # ***************************************************************************************************************
 
 
