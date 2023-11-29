@@ -184,10 +184,8 @@ def filter_dataframe(df):
     st.write('Отфильтрованный DataFrame:', final_filtered_df)
     return final_filtered_df
     
-df_graphic = filter_dataframe(sellers_data_sales_new)
-
 def line_chart_from_dataframe(df):
-    st.header("Линейный график")
+    # st.header("Линейный график")
     # Удалим столбец 'Category' и сделаем его индексом
     df.set_index('Category', inplace=True)
     # Транспонируем датафрейм
@@ -196,16 +194,35 @@ def line_chart_from_dataframe(df):
     fig = px.line(df_transposed, title="Линейный график", width=1000)
     # Отображаем график
     st.plotly_chart(fig)
-    
-line_chart_from_dataframe(df_graphic)
+
+st.header("Данные по продажам")
+df_graphic_sales = filter_dataframe(sellers_data_sales_new)
+line_chart_from_dataframe(df_graphic_sales)
+st.header("Данные по выручке")
+df_graphic_revenue = filter_dataframe(sellers_data_revenue_new)
+line_chart_from_dataframe(df_graphic_revenue)
 
 # *************************************************************************************************************
 st.header("Топ категорий в выбранный месяц")
 # Получаем список названий столбцов - месяцев для выпадающего списка
-months_names = sellers_data_sales_new.columns.tolist()
+months_names = sellers_data_sales.columns.tolist()
 # Выпадающий список
 selected_option_month = st.selectbox('Выбери месяц', months_names)
 
 # Слайдер для выбора одного числа
 single_value = st.slider("Выберите число", min_value=0, max_value=100, value=50, step=1)
 st.write("Выбрано число:", single_value)
+# Выбор нужного столбца
+selected_column = sellers_data_sales[selected_option_month]
+
+# Сортировка данных по убыванию
+sorted_data = selected_column.sort_values(ascending=False)
+
+# Отображение указанного количества строк
+result = sorted_data.head(single_value)
+
+# Вывод результата
+st.write(result)
+
+
+
