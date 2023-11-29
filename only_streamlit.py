@@ -113,27 +113,34 @@ sellers_data_sales_new[['cat_level_1', 'cat_level_2', 'cat_level_3']] = sellers_
 # Переупорядочиваем столбцы
 sellers_data_sales_new = sellers_data_sales_new[['cat_level_1', 'cat_level_2', 'cat_level_3'] + months_names]
 # Получаем уникальные значения для каждого уровня категории
-cat_level_1_options = sellers_data_sales_new['cat_level_1'].unique()
+cat_level_1_options = df['Category'].apply(lambda x: x.split('_')[0]).unique()
+
 # Выбор первого уровня
 selected_cat_level_1 = st.selectbox('Выбери первый уровень', cat_level_1_options)
+
 # Фильтруем DataFrame по выбранному первому уровню
-filtered_df_level_1 = sellers_data_sales_new[sellers_data_sales_new['cat_level_1'] == selected_cat_level_1]
-# Получаем уникальные значения для второго уровня
-cat_level_2_options = filtered_df_level_1['cat_level_2'].unique()
-# Выбор второго уровня
+filtered_df_level_1 = df[df['Category'].apply(lambda x: x.split('_')[0]) == selected_cat_level_1]
+
+# Выбор второго уровня, добавив вариант "Все варианты"
+cat_level_2_options = ['Все варианты'] + filtered_df_level_1['Category'].apply(lambda x: x.split('_')[1]).unique().tolist()
 selected_cat_level_2 = st.selectbox('Выбери второй уровень', cat_level_2_options)
-# Фильтруем DataFrame по выбранным первому и второму уровням
-filtered_df_level_2 = filtered_df_level_1[filtered_df_level_1['cat_level_2'] == selected_cat_level_2]
-# Получаем уникальные значения для третьего уровня
-cat_level_3_options = filtered_df_level_2['cat_level_3'].unique()
-# Выбор третьего уровня
+
+# Фильтруем DataFrame по выбранному второму уровню, если не выбран "Все варианты"
+if selected_cat_level_2 != 'Все варианты':
+    filtered_df_level_2 = filtered_df_level_1[filtered_df_level_1['Category'].apply(lambda x: x.split('_')[1]) == selected_cat_level_2]
+else:
+    filtered_df_level_2 = filtered_df_level_1
+
+# Выбор третьего уровня, добавив вариант "Все варианты"
+cat_level_3_options = ['Все варианты'] + filtered_df_level_2['Category'].apply(lambda x: x.split('_')[2]).unique().tolist()
 selected_cat_level_3 = st.selectbox('Выбери третий уровень', cat_level_3_options)
-# Фильтруем DataFrame по выбранным уровням
-final_filtered_df = filtered_df_level_2[
-    (filtered_df_level_2['cat_level_1'] == selected_cat_level_1) &
-    (filtered_df_level_2['cat_level_2'] == selected_cat_level_2) &
-    (filtered_df_level_2['cat_level_3'] == selected_cat_level_3)
-]
+
+# Фильтруем DataFrame по выбранным уровням, если не выбран "Все варианты"
+if selected_cat_level_3 != 'Все варианты':
+    final_filtered_df = filtered_df_level_2[filtered_df_level_2['Category'].apply(lambda x: x.split('_')[2]) == selected_cat_level_3]
+else:
+    final_filtered_df = filtered_df_level_2
+
 # Выводим отфильтрованный DataFrame
 st.write('Отфильтрованный DataFrame:', final_filtered_df)
 # selected_button_month = st.radio("Выберите категорию:", ["fbo", "fbs", "retail", "crossborder", "total"])
