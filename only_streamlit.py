@@ -228,7 +228,7 @@ result_sales = sorted_data.head(single_value)
 st.header("Данные по продажам")
 st.write(result_sales)
 # ***************************************************************************************************************
-# Выбор нужного столбца по продажам
+# Выбор нужного столбца по выручке
 selected_column = sellers_data_revenue[selected_option_month]
 # Сортировка данных по убыванию
 sorted_data = selected_column.sort_values(ascending=False)
@@ -238,6 +238,14 @@ result_revenue = sorted_data.head(single_value)
 st.header("Данные по выручке")
 st.write(result_revenue)
 
+# Создаем два столбца
+col1, col2 = st.columns(2)
+
+# Помещаем таблицу df1 в первый столбец
+col1.dataframe(result_sales)
+
+# Помещаем таблицу df2 во второй столбец
+col2.dataframe(result_revenue)
 # ***************************************************************************************************************
 
 
