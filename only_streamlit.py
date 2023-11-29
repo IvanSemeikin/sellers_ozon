@@ -10,6 +10,8 @@ import plotly.express as px
 def load_data(file_path):
     full_path = f'{file_path}.xlsx'
     data = pd.read_excel(full_path)
+    if not isinstance(data, pd.DataFrame):
+    data = pd.DataFrame(data)
     return data
 
 # Функция для определения таблиц для графиков
@@ -96,8 +98,8 @@ show_table_top_sellers(selected_button, "sales")
 show_table_top_sellers(selected_button, "revenue")
 sellers_data_sales = show_data(selected_button)
 sellers_data_revenue = show_data(selected_button)
-st.write(sellers_data_sales.dtypes)
-st.write(sellers_data_revenue.dtypes)
+st.write(sellers_data_sales)
+st.write(sellers_data_revenue)
 # show_graph_top_sellers_sales(selected_button, "sales")
 # show_graph_top_sellers_revenue(selected_button, "revenue")
 
