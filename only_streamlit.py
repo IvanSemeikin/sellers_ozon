@@ -270,7 +270,7 @@ sellers_data_sales_copy_total = sellers_data_sales_copy_total.sort_values(by='me
 # result_sales = sorted_data.head(single_value)
 
 # Выбор нужного столбца со средними значениями
-sel_col_sales_total = sellers_data_sales_copy_total[mean_value]
+sel_col_sales_total = sellers_data_sales_copy_total['mean_value']
 # Сортировка данных по убыванию
 sorted_data_sales_total = sel_col_sales_total.sort_values(ascending=False)
 # Выводим результат
