@@ -44,7 +44,7 @@ def show_table_top_sellers(button_name):
     return sellers_sales, sellers_revenue
     
 # Отображение графика для продаж
-def show_graph_top_sellers_sales(button_name, metric_type, sellers_data_sales):
+def show_graph_top_sellers_sales(button_name, metric_type):
     st.header(f"График топ продавцов по {metric_type.capitalize()} || {button_name}")
 
     # Линейный график по продавцам-лидерам
