@@ -75,7 +75,7 @@ def show_graph_top_sellers_revenue(button_name, metric_type):
     
     selected_seller_categories = st.multiselect('Выберите категории для отображения', available_seller_categories, key=multiselect_key, default=available_seller_categories)
     filtered_sellers_data_revenue = melted_sellers_data_revenue[melted_sellers_data_revenue['Category'].isin(selected_seller_categories)]
-    fig_sellers = px.line(filtered_sellers_data_revenue, x='Month', y='Sales', color='Category', title=f'Top Sellers by {metric_type.capitalize()}')
+    fig_sellers = px.line(filtered_sellers_data_revenue, x='Month', y='Sales', color='Category', title=f'Top Sellers by {metric_type.capitalize()}', width=1000)
     st.plotly_chart(fig_sellers)
 
 
