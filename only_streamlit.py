@@ -246,8 +246,8 @@ table_revenue = pd.DataFrame(result_revenue)
 col1, col2 = st.columns(2)
 
 # Устанавливаем ширину столбцов через CSS
-col1.table(table_sales.style.set_table_styles([{'selector': 'table', 'props': [('max-width', '600px')]}]))
-col2.table(table_revenue.style.set_table_styles([{'selector': 'table', 'props': [('max-width', '600px')]}]))
+col1.table(table_sales.style.set_table_styles([{'selector': 'table', 'props': [('max-width', '800px')]}]))
+col2.table(table_revenue.style.set_table_styles([{'selector': 'table', 'props': [('max-width', '800px')]}]))
 
 
 
