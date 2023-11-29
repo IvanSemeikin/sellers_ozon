@@ -47,8 +47,11 @@ def show_table_top_sellers(button_name):
 def show_graph_top_sellers_sales(button_name, metric_type):
     st.header(f"График топ продавцов по {metric_type.capitalize()} || {button_name}")
 
+    # Сброс индекса
+    sellers_data_sales_reset = sellers_data_sales.reset_index()
+
     # Линейный график по продавцам-лидерам
-    melted_sellers_data_sales = pd.melt(sellers_data_sales, id_vars=['Category'], var_name='Month', value_name='Sales')
+    melted_sellers_data_sales = pd.melt(sellers_data_sales_reset, id_vars=['Category'], var_name='Month', value_name='Sales')
     available_seller_categories = melted_sellers_data_sales['Category'].unique()
 
     # Генерация уникального ключа для виджета st.multiselect
@@ -58,6 +61,7 @@ def show_graph_top_sellers_sales(button_name, metric_type):
     filtered_sellers_data_sales = melted_sellers_data_sales[melted_sellers_data_sales['Category'].isin(selected_seller_categories)]
     fig_sellers = px.line(filtered_sellers_data_sales, x='Month', y='Sales', color='Category', title=f'Top Sellers by {metric_type.capitalize()}', width=1000)
     st.plotly_chart(fig_sellers)
+
 
 
 # Отображение графика для выручки
