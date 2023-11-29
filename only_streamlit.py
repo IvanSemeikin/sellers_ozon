@@ -343,7 +343,7 @@ st.header("Средние за 23 год")
 # Создаем копию датафрейма и оставляем только столбцы, где в названии есть '23'
 sellers_data_revenue_copy_23 = sellers_data_revenue.filter(like='23').copy()
 # Удаляем строки, в которых есть хотя бы одно значение 0
-sellers_data_revenue_copy_23 = sellers_data_revenue_copy_23[(sellers_data_sales_copy_23 != 0).all(axis=1)]
+sellers_data_revenue_copy_23 = sellers_data_revenue_copy_23[(sellers_data_revenue_copy_23 != 0).all(axis=1)]
 # Считаем среднее для каждой строки
 sellers_data_revenue_copy_23['mean_value_23'] = sellers_data_revenue_copy_23.mean(axis=1)
 
