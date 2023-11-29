@@ -24,9 +24,9 @@ def show_data(button_name):
         sellers_data_sales = pd.DataFrame(sellers_data_sales)
     if not isinstance(sellers_data_revenue, pd.DataFrame):
         sellers_data_revenue = pd.DataFrame(sellers_data_revenue)
-    sellers_data_sales.set_index('Category', inplace=True)
-    sellers_data_revenue.set_index('Category', inplace=True) 
-    return sellers_data_sales, sellers_data_revenue
+    sellers_data_sales_ind.set_index('Category', inplace=True)
+    sellers_data_revenue_ind.set_index('Category', inplace=True) 
+    return sellers_data_sales_ind, sellers_data_revenue_ind, sellers_data_sales, sellers_data_revenue
 
 
 # Отображение таблицы с топ продавцами   
@@ -95,7 +95,7 @@ selected_button = st.radio("Выберите категорию:", ["fbo", "fbs"
 
 # попробую новые функции
 sellers_data_sales, sellers_data_revenue = show_data(selected_button)
-sellers_sales, sellers_revenue = show_table_top_sellers(selected_button)
+sellers_sales, sellers_revenue, sellers_data_sales_new, sellers_data_revenue_new = show_table_top_sellers(selected_button)
 # ПРОДАЖИ
 st.header(f"Доля максимального значения Продаж продавца ко всем продажам категории || {selected_button}")
 st.dataframe(sellers_data_sales)
@@ -115,7 +115,7 @@ st.header("Более удобный просмотр категорий")
 
 # Выбор кнопки
 selected_button_cat = st.radio("Выберите категорию еще раз:", ["fbo", "fbs", "retail", "crossborder", "total"])
-sellers_data_sales_new, sellers_data_revenue_new = show_data(selected_button_cat)
+# sellers_data_sales_new, sellers_data_revenue_new = show_data(selected_button_cat)
 st.dataframe(sellers_data_sales_new)
 st.dataframe(sellers_data_revenue_new)
 # # Разделяем индекс на три столбца
@@ -124,31 +124,31 @@ st.dataframe(sellers_data_revenue_new)
 # sellers_data_sales_new = sellers_data_sales_new[['cat_level_1', 'cat_level_2', 'cat_level_3'] + months_names]
 def filter_dataframe(df):
     # Получаем уникальные значения для каждого уровня категории
-    cat_level_1_options = df['Category'].apply(lambda x: x.split('_')[0]).unique()
+    cat_level_1_options = df.index.get_level_values(0).unique()
 
     # Выбор первого уровня
     selected_cat_level_1 = st.selectbox('Выбери первый уровень', cat_level_1_options)
 
     # Фильтруем DataFrame по выбранному первому уровню
-    filtered_df_level_1 = df[df['Category'].apply(lambda x: x.split('_')[0]) == selected_cat_level_1]
+    filtered_df_level_1 = df[df.index.get_level_values(0) == selected_cat_level_1]
 
     # Выбор второго уровня, добавив вариант "Все варианты"
-    cat_level_2_options = ['Все варианты'] + filtered_df_level_1['Category'].apply(lambda x: x.split('_')[1]).unique().tolist()
+    cat_level_2_options = ['Все варианты'] + filtered_df_level_1.index.get_level_values(1).unique().tolist()
     selected_cat_level_2 = st.selectbox('Выбери второй уровень', cat_level_2_options)
 
     # Фильтруем DataFrame по выбранному второму уровню, если не выбран "Все варианты"
     if selected_cat_level_2 != 'Все варианты':
-        filtered_df_level_2 = filtered_df_level_1[filtered_df_level_1['Category'].apply(lambda x: x.split('_')[1]) == selected_cat_level_2]
+        filtered_df_level_2 = filtered_df_level_1[filtered_df_level_1.index.get_level_values(1) == selected_cat_level_2]
     else:
         filtered_df_level_2 = filtered_df_level_1
 
     # Выбор третьего уровня, добавив вариант "Все варианты"
-    cat_level_3_options = ['Все варианты'] + filtered_df_level_2['Category'].apply(lambda x: x.split('_')[2]).unique().tolist()
+    cat_level_3_options = ['Все варианты'] + filtered_df_level_2.index.get_level_values(2).unique().tolist()
     selected_cat_level_3 = st.selectbox('Выбери третий уровень', cat_level_3_options)
 
     # Фильтруем DataFrame по выбранным уровням, если не выбран "Все варианты"
     if selected_cat_level_3 != 'Все варианты':
-        final_filtered_df = filtered_df_level_2[filtered_df_level_2['Category'].apply(lambda x: x.split('_')[2]) == selected_cat_level_3]
+        final_filtered_df = filtered_df_level_2[filtered_df_level_2.index.get_level_values(2) == selected_cat_level_3]
     else:
         final_filtered_df = filtered_df_level_2
 
