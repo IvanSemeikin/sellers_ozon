@@ -17,7 +17,6 @@ def load_data(file_path):
 
 # Функция для определения таблиц для графиков
 def show_data(button_name):
-    # Таблица продавцов-лидеров по продажам
     sellers_data_sales = load_data(f"Общая_таблица_проценты_{button_name.lower()}_sales")
     sellers_data_revenue = load_data(f"Общая_таблица_проценты_{button_name.lower()}_revenue")
     # Проверка и приведение данных к DataFrame
@@ -25,26 +24,24 @@ def show_data(button_name):
         sellers_data_sales = pd.DataFrame(sellers_data_sales)
     if not isinstance(sellers_data_revenue, pd.DataFrame):
         sellers_data_revenue = pd.DataFrame(sellers_data_revenue)
+    sellers_data_sales.set_index('Category', inplace=True)
+    sellers_data_revenue.set_index('Category', inplace=True) 
     return sellers_data_sales, sellers_data_revenue
 
 
-# Отображение таблицы с долей лидера от всей категории
-def show_table_percentage(button_name):
-    st.header(f"Доля лидера от всей категории || {button_name}")
-
-    # Загрузка данных по продажам
-    sales_data = load_data(f"Общая_таблица_проценты_{button_name.lower()}_sales")
-    st.subheader(f"Доля лидера от всей категории")
-    st.dataframe(sales_data)
-    
 # Отображение таблицы с топ продавцами   
-def show_table_top_sellers(button_name, metric_type):
-    st.header(f"Топ продавцов по {metric_type.capitalize()} || {button_name}")
-
-    # Таблица продавцов-лидеров по продажам
-    sellers_data_sales = load_data(f"Общая_таблица_продавцы_{button_name.lower()}_sales")
-    st.subheader(f"Топ продавцов по {metric_type.capitalize()}")
-    st.dataframe(sellers_data_sales)
+def show_table_top_sellers(button_name):
+    # Таблица продавцов-лидеров по продажам и выручке
+    sellers_sales = load_data(f"Общая_таблица_продавцы_{button_name.lower()}_sales")
+    sellers_revenue = load_data(f"Общая_таблица_продавцы_{button_name.lower()}_revenue")
+    # Проверка и приведение данных к DataFrame
+    if not isinstance(sellers_data_sales, pd.DataFrame):
+        sellers_data_sales = pd.DataFrame(sellers_data_sales)
+    if not isinstance(sellers_data_revenue, pd.DataFrame):
+        sellers_data_revenue = pd.DataFrame(sellers_data_revenue)
+    sellers_sales.set_index('Category', inplace=True)
+    sellers_revenue.set_index('Category', inplace=True) 
+    return sellers_sales, sellers_revenue
     
 # Отображение графика для продаж
 def show_graph_top_sellers_sales(button_name, metric_type):
@@ -89,12 +86,19 @@ st.markdown(text, unsafe_allow_html=True)
 selected_button = st.radio("Выберите категорию:", ["fbo", "fbs", "retail", "crossborder", "total"])
 
 # попробую новые функции
-show_table_percentage(selected_button)
-show_table_percentage(selected_button)
-show_table_top_sellers(selected_button, "sales")
-show_table_top_sellers(selected_button, "revenue")
 sellers_data_sales, sellers_data_revenue = show_data(selected_button)
+sellers_sales, sellers_revenue = show_table_top_sellers(selected_button)
+# ПРОДАЖИ
+st.header(f"Доля максимального значения Продаж продавца ко всем продажам категории || {selected_button}")
+st.dataframe(sellers_data_sales)
+st.header(f"Топ продавцов по Продажам || {selected_button}")
+st.dataframe(sellers_sales)
 show_graph_top_sellers_sales(selected_button, "sales")
+# ВЫРУЧКА
+st.header(f"Доля максимального значения Выручки продавца ко всей выручке категории || {selected_button}")
+st.dataframe(sellers_data_revenue)
+st.header(f"Топ продавцов по Выручке || {selected_button}")
+st.dataframe(sellers_revenue)
 show_graph_top_sellers_revenue(selected_button, "revenue")
 # *********************************************************************************************************
 
@@ -142,20 +146,17 @@ def filter_dataframe(df):
     # Выводим отфильтрованный DataFrame
     st.write('Отфильтрованный DataFrame:', final_filtered_df)
     return final_filtered_df
+    
 df_graphic = filter_dataframe(sellers_data_sales_new)
 
 def line_chart_from_dataframe(df):
     st.header("Линейный график")
-
     # Удалим столбец 'Category' и сделаем его индексом
     df.set_index('Category', inplace=True)
-
     # Транспонируем датафрейм
     df_transposed = df.T
-
     # Строим линейный график с настройкой ширины
     fig = px.line(df_transposed, title="Линейный график", width=1000)
-
     # Отображаем график
     st.plotly_chart(fig)
     
