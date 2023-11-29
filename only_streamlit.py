@@ -20,11 +20,11 @@ def load_data(file_path):
 
 # Функция для отображения таблицы и графика
 def show_data(button_name, metric_type):
-    st.header(f"Данные по {metric_type.capitalize()} || {button_name}")
+    st.header(f"Данные по {metric_type.capitalize()} || {button_name}", align='center')
 
     # Загрузка данных по продажам
     sales_data = load_data(f"Общая_таблица_проценты_{button_name.lower()}_sales")
-    st.subheader(f"Доля лидера от всей категории")
+    st.subheader(f"Доля лидера от всей категории", align='center')
     st.dataframe(sales_data)
 
     # *************************************************** График начало *********************************************************
@@ -130,7 +130,7 @@ def show_data(button_name, metric_type):
     
     # Таблица продавцов-лидеров по продажам
     sellers_data_sales = load_data(f"Общая_таблица_продавцы_{button_name.lower()}_sales")
-    st.subheader(f"Топ продавцов по {metric_type.capitalize()}")
+    st.subheader(f"Топ продавцов по {metric_type.capitalize()}", align='center')
     st.dataframe(sellers_data_sales)
 
     # ************************* настоящий график ***************************************
@@ -147,7 +147,7 @@ def show_data(button_name, metric_type):
     st.plotly_chart(fig_sellers)
 
 # Основной код Streamlit
-st.title("Привет! Здесь информация по продавцам OZON")
+st.title("Привет! Здесь информация по продавцам OZON (по WB скоро появится", align='center')
 
 # Выбор кнопки
 selected_button = st.radio("Выберите категорию:", ["fbo", "fbs", "retail", "crossborder", "total"])
