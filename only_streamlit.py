@@ -141,8 +141,24 @@ def filter_dataframe(df):
 
     # Выводим отфильтрованный DataFrame
     st.write('Отфильтрованный DataFrame:', final_filtered_df)
-    # return final_filtered_df
-filter_dataframe(sellers_data_sales_new)
+    return final_filtered_df
+df_graphic = filter_dataframe(sellers_data_sales_new)
+
+def line_chart_from_dataframe(df):
+    st.header("Линейный график")
+
+    # Предположим, что первая колонка - это ось X
+    x_column = df.columns[0]
+
+    # Остальные колонки - это данные для линий
+    data_columns = df.columns[1:]
+
+    # Строим линейный график
+    fig = px.line(df, x=x_column, y=data_columns, title="Линейный график")
+
+    # Отображаем график
+    st.plotly_chart(fig)
+line_chart_from_dataframe(df_graphic)
 
 # *************************************************************************************************************
 st.header("Топ категорий в выбранный месяц")
