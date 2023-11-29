@@ -128,31 +128,31 @@ selected_button_cat = st.radio("Выберите категорию еще ра�
 # sellers_data_sales_new = sellers_data_sales_new[['cat_level_1', 'cat_level_2', 'cat_level_3'] + months_names]
 def filter_dataframe(df):
     # Получаем уникальные значения для каждого уровня категории
-    cat_level_1_options = df.index.get_level_values(0).unique()
+    cat_level_1_options = df['Category'].apply(lambda x: x.split('_')[0]).unique()
 
     # Выбор первого уровня
     selected_cat_level_1 = st.selectbox('Выбери первый уровень', cat_level_1_options)
 
     # Фильтруем DataFrame по выбранному первому уровню
-    filtered_df_level_1 = df[df.index.get_level_values(0) == selected_cat_level_1]
+    filtered_df_level_1 = df[df['Category'].apply(lambda x: x.split('_')[0]) == selected_cat_level_1]
 
     # Выбор второго уровня, добавив вариант "Все варианты"
-    cat_level_2_options = ['Все варианты'] + filtered_df_level_1.index.get_level_values(1).unique().tolist()
+    cat_level_2_options = ['Все варианты'] + filtered_df_level_1['Category'].apply(lambda x: x.split('_')[1]).unique().tolist()
     selected_cat_level_2 = st.selectbox('Выбери второй уровень', cat_level_2_options)
 
     # Фильтруем DataFrame по выбранному второму уровню, если не выбран "Все варианты"
     if selected_cat_level_2 != 'Все варианты':
-        filtered_df_level_2 = filtered_df_level_1[filtered_df_level_1.index.get_level_values(1) == selected_cat_level_2]
+        filtered_df_level_2 = filtered_df_level_1[filtered_df_level_1['Category'].apply(lambda x: x.split('_')[1]) == selected_cat_level_2]
     else:
         filtered_df_level_2 = filtered_df_level_1
 
     # Выбор третьего уровня, добавив вариант "Все варианты"
-    cat_level_3_options = ['Все варианты'] + filtered_df_level_2.index.get_level_values(2).unique().tolist()
+    cat_level_3_options = ['Все варианты'] + filtered_df_level_2['Category'].apply(lambda x: x.split('_')[2]).unique().tolist()
     selected_cat_level_3 = st.selectbox('Выбери третий уровень', cat_level_3_options)
 
     # Фильтруем DataFrame по выбранным уровням, если не выбран "Все варианты"
     if selected_cat_level_3 != 'Все варианты':
-        final_filtered_df = filtered_df_level_2[filtered_df_level_2.index.get_level_values(2) == selected_cat_level_3]
+        final_filtered_df = filtered_df_level_2[filtered_df_level_2['Category'].apply(lambda x: x.split('_')[2]) == selected_cat_level_3]
     else:
         final_filtered_df = filtered_df_level_2
 
@@ -160,7 +160,7 @@ def filter_dataframe(df):
     st.write('Отфильтрованный DataFrame:', final_filtered_df)
     return final_filtered_df
     
-df_graphic = filter_dataframe(sellers_data_sales)
+df_graphic = filter_dataframe(sellers_data_sales_new)
 
 def line_chart_from_dataframe(df):
     st.header("Линейный график")
