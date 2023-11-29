@@ -12,7 +12,9 @@ def load_data(file_path):
     data = pd.read_excel(full_path)
     if not isinstance(data, pd.DataFrame):
         data = pd.DataFrame(data)
-    return data
+    # Округление всех значений до 1 знака после запятой
+    rounded_data = data.round(0)
+    return rounded_data
 
 # Функция для определения таблиц для графиков
 def show_data(button_name):
