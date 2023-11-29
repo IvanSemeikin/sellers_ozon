@@ -34,10 +34,10 @@ def show_table_percentage(button_name):
 
     # Загрузка данных по продажам
     sales_data = load_data(f"Общая_таблица_проценты_{button_name.lower()}_sales")
-    # Округление всех значений до 1 знака после запятой
-    rounded_sales_data = sales_data.round(1)
+    # # Округление всех значений до 1 знака после запятой
+    # rounded_sales_data = sales_data.round(1)
     st.subheader(f"Доля лидера от всей категории")
-    st.dataframe(rounded_sales_data)
+    st.dataframe(sales_data.format("{:.1f}"))
     
 # Отображение таблицы с топ продавцами   
 def show_table_top_sellers(button_name, metric_type):
