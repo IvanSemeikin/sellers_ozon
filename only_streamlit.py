@@ -94,8 +94,8 @@ st.markdown(text, unsafe_allow_html=True)
 selected_button = st.radio("Выберите категорию:", ["fbo", "fbs", "retail", "crossborder", "total"])
 
 # попробую новые функции
-sellers_data_sales, sellers_data_revenue = show_data(selected_button)
-sellers_sales, sellers_revenue, sellers_data_sales_new, sellers_data_revenue_new = show_table_top_sellers(selected_button)
+sellers_data_sales, sellers_data_revenue, sellers_data_sales_new, sellers_data_revenue_new = show_data(selected_button)
+sellers_sales, sellers_revenue = show_table_top_sellers(selected_button)
 # ПРОДАЖИ
 st.header(f"Доля максимального значения Продаж продавца ко всем продажам категории || {selected_button}")
 st.dataframe(sellers_data_sales)
