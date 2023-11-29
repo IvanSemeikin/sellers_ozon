@@ -19,14 +19,19 @@ def load_data(file_path):
 def show_data(button_name):
     sellers_data_sales = load_data(f"Общая_таблица_проценты_{button_name.lower()}_sales")
     sellers_data_revenue = load_data(f"Общая_таблица_проценты_{button_name.lower()}_revenue")
+
     # Проверка и приведение данных к DataFrame
     if not isinstance(sellers_data_sales, pd.DataFrame):
         sellers_data_sales = pd.DataFrame(sellers_data_sales)
     if not isinstance(sellers_data_revenue, pd.DataFrame):
         sellers_data_revenue = pd.DataFrame(sellers_data_revenue)
-    sellers_data_sales_ind.set_index('Category', inplace=True)
-    sellers_data_revenue_ind.set_index('Category', inplace=True) 
+
+    # Создаем копии данных с установленными индексами
+    sellers_data_sales_ind = sellers_data_sales.set_index('Category').copy()
+    sellers_data_revenue_ind = sellers_data_revenue.set_index('Category').copy()
+
     return sellers_data_sales_ind, sellers_data_revenue_ind, sellers_data_sales, sellers_data_revenue
+
 
 
 # Отображение таблицы с топ продавцами   
