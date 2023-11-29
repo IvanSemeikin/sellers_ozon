@@ -35,10 +35,10 @@ def show_table_top_sellers(button_name):
     sellers_sales = load_data(f"Общая_таблица_продавцы_{button_name.lower()}_sales")
     sellers_revenue = load_data(f"Общая_таблица_продавцы_{button_name.lower()}_revenue")
     # Проверка и приведение данных к DataFrame
-    if not isinstance(sellers_data_sales, pd.DataFrame):
-        sellers_data_sales = pd.DataFrame(sellers_data_sales)
-    if not isinstance(sellers_data_revenue, pd.DataFrame):
-        sellers_data_revenue = pd.DataFrame(sellers_data_revenue)
+    if not isinstance(sellers_sales, pd.DataFrame):
+        sellers_sales = pd.DataFrame(sellers_data_sales)
+    if not isinstance(sellers_revenue, pd.DataFrame):
+        sellers_revenue = pd.DataFrame(sellers_data_revenue)
     sellers_sales.set_index('Category', inplace=True)
     sellers_revenue.set_index('Category', inplace=True) 
     return sellers_sales, sellers_revenue
