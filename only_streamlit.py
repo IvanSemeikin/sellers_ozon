@@ -238,16 +238,21 @@ result_revenue = sorted_data.head(single_value)
 st.header("Данные по выручке")
 st.write(result_revenue)
 
-# Создаем два столбца
+# Создаем две таблицы
+table_sales = pd.DataFrame(result_sales)
+table_revenue = pd.DataFrame(result_revenue)
+
+# Отображаем таблицы в два столбца
 col1, col2 = st.columns(2)
 
 # Помещаем таблицу 1 в первый столбец
 col1.subheader("Данные по продажам")
-col1.write(result_sales)
+col1.table(table_sales, width=800, height=table_sales.shape[0] * 40)
 
 # Помещаем таблицу 2 во второй столбец
-col1.subheader("Данные по выручке")
-col2.write(result_revenue)
+col2.subheader("Данные по выручке")
+col2.table(table_revenue, width=800, height=table_revenue.shape[0] * 40)
+
 # ***************************************************************************************************************
 
 
