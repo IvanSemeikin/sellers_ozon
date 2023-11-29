@@ -87,8 +87,8 @@ show_table_top_sellers(selected_button, "sales")
 show_table_top_sellers(selected_button, "revenue")
 sellers_data_sales = show_data(selected_button)
 sellers_data_revenue = show_data(selected_button)
-show_graph_top_sellers(selected_button, "sales")
-show_graph_top_sellers(selected_button, "revenue")
+show_graph_top_sellers_sales(selected_button, "sales")
+show_graph_top_sellers_revenue(selected_button, "revenue")
 
 # # Вывод данных для продаж
 # show_data(selected_button, "sales")
