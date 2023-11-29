@@ -44,7 +44,7 @@ def show_table_top_sellers(button_name):
     return sellers_sales, sellers_revenue
     
 # Отображение графика для продаж
-def show_graph_top_sellers_sales(button_name, metric_type):
+def show_graph_top_sellers_sales(button_name, metric_type, sellers_data_sales):
     st.header(f"График топ продавцов по {metric_type.capitalize()} || {button_name}")
 
     # Линейный график по продавцам-лидерам
@@ -58,6 +58,7 @@ def show_graph_top_sellers_sales(button_name, metric_type):
     filtered_sellers_data_sales = melted_sellers_data_sales[melted_sellers_data_sales['Category'].isin(selected_seller_categories)]
     fig_sellers = px.line(filtered_sellers_data_sales, x='Month', y='Sales', color='Category', title=f'Top Sellers by {metric_type.capitalize()}', width=1000)
     st.plotly_chart(fig_sellers)
+
 
 # Отображение графика для выручки
 def show_graph_top_sellers_revenue(button_name, metric_type):
