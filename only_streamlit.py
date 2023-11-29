@@ -295,7 +295,7 @@ sellers_data_sales_copy_23 = sellers_data_sales_copy_23[(sellers_data_sales_copy
 sellers_data_sales_copy_23['mean_value_23'] = sellers_data_sales_copy_23.mean(axis=1)
 
 # Выбор нужного столбца со средними значениями
-sel_col_sales_23 = sellers_data_sales_copy_23['mean_value_22']
+sel_col_sales_23 = sellers_data_sales_copy_23['mean_value_23']
 # Сортировка данных по убыванию
 sorted_data_sales_23 = sel_col_sales_22.sort_values(ascending=False)
 # Отображение указанного количества строк
@@ -348,7 +348,7 @@ sellers_data_revenue_copy_23 = sellers_data_revenue_copy_23[(sellers_data_sales_
 sellers_data_revenue_copy_23['mean_value_23'] = sellers_data_revenue_copy_23.mean(axis=1)
 
 # Выбор нужного столбца со средними значениями
-sel_col_revenue_23 = sellers_data_revenue_copy_23['mean_value_22']
+sel_col_revenue_23 = sellers_data_revenue_copy_23['mean_value_23']
 # Сортировка данных по убыванию
 sorted_data_revenue_23 = sel_col_revenue_23.sort_values(ascending=False)
 # Отображение указанного количества строк
