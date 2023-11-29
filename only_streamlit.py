@@ -247,7 +247,8 @@ col1, col2 = st.columns(2)
 
 # Устанавливаем ширину столбцов через CSS
 col1.table(table_sales.style.set_table_styles([{'selector': 'table', 'props': [('width', '1000px')]}]))
-col2.table(table_revenue.style.set_table_styles([{'selector': 'table', 'props': [('width', '1000px')]}]))
+col2.table(table_revenue.style.set_table_styles([{'selector': 'table', 'props': [('width', '800px')]}]))
+
 
 
 
