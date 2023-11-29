@@ -241,10 +241,10 @@ st.write(result_revenue)
 # Отображаем таблицы в два столбца с шириной 600 пикселей
 col1, col2 = st.columns(2)
 col1.subheader("Данные по продажам")
-col1.table(result_sales, width=800)
+col1.table(result_sales)
 
 col2.subheader("Данные по выручке")
-col2.table(result_revenue, width=800)
+col2.table(result_revenue)
 
 
 
