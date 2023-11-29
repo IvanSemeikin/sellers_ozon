@@ -242,10 +242,10 @@ st.write(result_revenue)
 col1, col2 = st.columns(2)
 
 # Помещаем таблицу df1 в первый столбец
-col1.dataframe(result_sales)
+col1.table(result_sales)
 
 # Помещаем таблицу df2 во второй столбец
-col2.dataframe(result_revenue)
+col2.table(result_revenue)
 # ***************************************************************************************************************
 
 
