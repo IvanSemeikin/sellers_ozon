@@ -12,9 +12,8 @@ def load_data(file_path):
     data = pd.read_excel(full_path)
     if not isinstance(data, pd.DataFrame):
         data = pd.DataFrame(data)
-    # Округление всех значений до 1 знака после запятой
-    rounded_data = data.round(0)
-    return rounded_data
+
+    return data
 
 # Функция для определения таблиц для графиков
 def show_data(button_name):
@@ -35,8 +34,10 @@ def show_table_percentage(button_name):
 
     # Загрузка данных по продажам
     sales_data = load_data(f"Общая_таблица_проценты_{button_name.lower()}_sales")
+    # Округление всех значений до 1 знака после запятой
+    rounded_sales_data = sales_data.round(0)
     st.subheader(f"Доля лидера от всей категории")
-    st.dataframe(sales_data)
+    st.dataframe(rounded_sales_data)
     
 # Отображение таблицы с топ продавцами   
 def show_table_top_sellers(button_name, metric_type):
