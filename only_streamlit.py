@@ -215,19 +215,29 @@ months_names = sellers_data_sales.columns.tolist()
 selected_option_month = st.selectbox('Выбери месяц', months_names)
 
 # Слайдер для выбора одного числа
-single_value = st.slider("Выберите число", min_value=0, max_value=100, value=50, step=1)
+single_value = st.slider("Выберите число", min_value=0, max_value=20, value=5, step=1)
 st.write("Выбрано число:", single_value)
-# Выбор нужного столбца
+# ***************************************************************************************************************
+# Выбор нужного столбца по продажам
 selected_column = sellers_data_sales[selected_option_month]
-
 # Сортировка данных по убыванию
 sorted_data = selected_column.sort_values(ascending=False)
-
 # Отображение указанного количества строк
-result = sorted_data.head(single_value)
-
+result_sales = sorted_data.head(single_value)
 # Вывод результата
-st.write(result)
+st.header("Данные по продажам")
+st.write(result_sales)
+# ***************************************************************************************************************
+# Выбор нужного столбца по продажам
+selected_column = sellers_data_revenue[selected_option_month]
+# Сортировка данных по убыванию
+sorted_data = selected_column.sort_values(ascending=False)
+# Отображение указанного количества строк
+result_revenue = sorted_data.head(single_value)
+# Вывод результата
+st.header("Данные по выручке")
+st.write(result_revenue)
 
+# ***************************************************************************************************************
 
 
