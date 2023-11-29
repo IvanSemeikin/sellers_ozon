@@ -247,26 +247,26 @@ col2.subheader("Данные по выручке")
 col2.table(result_revenue)
 
 # ***************************************************************************************************************
-st.header("НУЖНО ВЫБРАТЬ КАКОЙ ВИД ОСТАВИТЬ:\nКАК ВЫШЕ ИЛИ КАК НИЖЕ")
-# # Создаем копию датафрейма
-# df_copy = df.copy()
+st.header("НОВЫЙ ЭТАП: СРЕДНИЕ ЗНАЧЕНИЯ")
+# Создаем копию датафрейма
+sellers_data_sales_copy = sellers_data_sales.copy()
 
-# # Удаляем строки, в которых есть хотя бы одно значение 0
-# df_copy = df_copy[(df_copy != 0).all(axis=1)]
+# Удаляем строки, в которых есть хотя бы одно значение 0
+sellers_data_sales_copy = sellers_data_sales_copy[(sellers_data_sales_copy != 0).all(axis=1)]
 
-# # Считаем среднее для каждой строки
-# df_copy['mean_value'] = df_copy.mean(axis=1)
+# Считаем среднее для каждой строки
+sellers_data_sales_copy['mean_value'] = sellers_data_sales_copy.mean(axis=1)
 
-# # Считаем среднее по столбцам, где в названии столбца есть '22'
-# df_copy['mean_22'] = df_copy.filter(like='22').mean(axis=1)
+# Считаем среднее по столбцам, где в названии столбца есть '22'
+sellers_data_sales_copy['mean_22'] = sellers_data_sales_copy.filter(like='22').mean(axis=1)
 
-# # Считаем среднее по столбцам, где в названии столбца есть '23'
-# df_copy['mean_23'] = df_copy.filter(like='23').mean(axis=1)
+# Считаем среднее по столбцам, где в названии столбца есть '23'
+sellers_data_sales_copy['mean_23'] = sellers_data_sales_copy.filter(like='23').mean(axis=1)
 
-# # Сортируем убыванию по среднему значению
-# df_copy = df_copy.sort_values(by='mean_value', ascending=False)
+# Сортируем по убыванию по среднему значению
+sellers_data_sales_copy = sellers_data_sales_copy.sort_values(by='mean_value', ascending=False)
 
-# # Выводим результат
-# print(df_copy)
+# Выводим результат
+st.write(sellers_data_sales_copy)
 
 
