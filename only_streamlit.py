@@ -121,8 +121,7 @@ st.header("Более удобный просмотр категорий")
 # Выбор кнопки
 selected_button_cat = st.radio("Выберите категорию еще раз:", ["fbo", "fbs", "retail", "crossborder", "total"])
 # sellers_data_sales_new, sellers_data_revenue_new = show_data(selected_button_cat)
-st.dataframe(sellers_data_sales_new)
-st.dataframe(sellers_data_revenue_new)
+
 # # Разделяем индекс на три столбца
 # sellers_data_sales_new[['cat_level_1', 'cat_level_2', 'cat_level_3']] = sellers_data_sales_new['Category'].str.split('_', expand=True)
 # # Переупорядочиваем столбцы
@@ -161,7 +160,7 @@ def filter_dataframe(df):
     st.write('Отфильтрованный DataFrame:', final_filtered_df)
     return final_filtered_df
     
-df_graphic = filter_dataframe(sellers_data_sales_new)
+df_graphic = filter_dataframe(sellers_data_sales)
 
 def line_chart_from_dataframe(df):
     st.header("Линейный график")
