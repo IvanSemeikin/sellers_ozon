@@ -153,8 +153,8 @@ def line_chart_from_dataframe(df):
     # Транспонируем датафрейм
     df_transposed = df.T
 
-    # Строим линейный график
-    fig = px.line(df_transposed, title="Линейный график")
+    # Строим линейный график с настройкой ширины
+    fig = px.line(df_transposed, title="Линейный график", width=1000)
 
     # Отображаем график
     st.plotly_chart(fig)
