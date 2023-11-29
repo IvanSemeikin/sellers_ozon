@@ -102,7 +102,7 @@ st.header("ПОПЫТКА СДЕЛАТЬ БОЛЬШЕ ФИЛЬТРОВ")
 st.header("Топ категорий в выбранный месяц")
 
 # Выбор кнопки
-selected_button_cat = st.radio("Выберите категорию:", ["fbo", "fbs", "retail", "crossborder", "total"])
+selected_button_cat = st.radio("Выберите категорию еще раз:", ["fbo", "fbs", "retail", "crossborder", "total"])
 sellers_data_sales_new, sellers_data_revenue_new = show_data(selected_button_cat)
 # Получаем список названий столбцов - месяцев для выпадающего списка
 months_names = sellers_data_sales_new.columns.tolist()
