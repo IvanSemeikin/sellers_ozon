@@ -11,7 +11,7 @@ def load_data(file_path):
     full_path = f'{file_path}.xlsx'
     data = pd.read_excel(full_path)
     if not isinstance(data, pd.DataFrame):
-    data = pd.DataFrame(data)
+        data = pd.DataFrame(data)
     return data
 
 # Функция для определения таблиц для графиков
