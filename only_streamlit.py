@@ -147,7 +147,7 @@ def show_data(button_name, metric_type):
     st.plotly_chart(fig_sellers)
 
 # Основной код Streamlit
-text = "<h1 style='text-align: center;'>Привет! Здесь информация по продавцам OZON<span style='color: blue;'><br>(по WB<span style='color: red;'> появится в следующем релизе)</span></h1>"
+text = "<h1 style='text-align: center;'>Привет! Здесь информация по продавцам <font color='blue'>OZON</font><br>(по <font color='red'>WB</font> появится в следующем релизе)</h1>"
 st.markdown(text, unsafe_allow_html=True)
 
 st.markdown("<h1 style='text-align: center;'>Привет! Здесь информация по продавцам OZON<br>(по WB появится в следующем релизе)</h1>", unsafe_allow_html=True)
