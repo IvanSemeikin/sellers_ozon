@@ -238,18 +238,12 @@ result_revenue = sorted_data.head(single_value)
 st.header("Данные по выручке")
 st.write(result_revenue)
 
-# Отображаем таблицы в два столбца с шириной 600 пикселей
 col1, col2 = st.columns(2)
-
-# Помещаем таблицу 1 в первый столбец
 col1.subheader("Данные по продажам")
-with col1:
-    st.write(result_sales.to_html(escape=False), unsafe_allow_html=True)
+col1.table(result_sales)
 
-# Помещаем таблицу 2 во второй столбец
 col2.subheader("Данные по выручке")
-with col2:
-    st.write(result_revenue.to_html(escape=False), unsafe_allow_html=True)
+col2.table(result_revenue)
 
 
 
