@@ -113,13 +113,13 @@ selected_option_month = st.selectbox('Выбери месяц', months_names)
 # # Переупорядочиваем столбцы
 # sellers_data_sales_new = sellers_data_sales_new[['cat_level_1', 'cat_level_2', 'cat_level_3'] + months_names]
 # Получаем уникальные значения для каждого уровня категории
-cat_level_1_options = df['Category'].apply(lambda x: x.split('_')[0]).unique()
+cat_level_1_options = sellers_data_sales_new['Category'].apply(lambda x: x.split('_')[0]).unique()
 
 # Выбор первого уровня
 selected_cat_level_1 = st.selectbox('Выбери первый уровень', cat_level_1_options)
 
 # Фильтруем DataFrame по выбранному первому уровню
-filtered_df_level_1 = df[df['Category'].apply(lambda x: x.split('_')[0]) == selected_cat_level_1]
+filtered_df_level_1 = sellers_data_sales_new[sellers_data_sales_new['Category'].apply(lambda x: x.split('_')[0]) == selected_cat_level_1]
 
 # Выбор второго уровня, добавив вариант "Все варианты"
 cat_level_2_options = ['Все варианты'] + filtered_df_level_1['Category'].apply(lambda x: x.split('_')[1]).unique().tolist()
