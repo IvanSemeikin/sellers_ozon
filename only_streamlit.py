@@ -108,10 +108,10 @@ sellers_data_sales_new, sellers_data_revenue_new = show_data(selected_button_cat
 months_names = sellers_data_sales_new.columns.tolist()
 # Выпадающий список
 selected_option_month = st.selectbox('Выбери месяц', months_names)
-# Разделяем индекс на три столбца
-sellers_data_sales_new[['cat_level_1', 'cat_level_2', 'cat_level_3']] = sellers_data_sales_new['Category'].str.split('_', expand=True)
-# Переупорядочиваем столбцы
-sellers_data_sales_new = sellers_data_sales_new[['cat_level_1', 'cat_level_2', 'cat_level_3'] + months_names]
+# # Разделяем индекс на три столбца
+# sellers_data_sales_new[['cat_level_1', 'cat_level_2', 'cat_level_3']] = sellers_data_sales_new['Category'].str.split('_', expand=True)
+# # Переупорядочиваем столбцы
+# sellers_data_sales_new = sellers_data_sales_new[['cat_level_1', 'cat_level_2', 'cat_level_3'] + months_names]
 # Получаем уникальные значения для каждого уровня категории
 cat_level_1_options = df['Category'].apply(lambda x: x.split('_')[0]).unique()
 
